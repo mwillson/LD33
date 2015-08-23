@@ -4,6 +4,11 @@
 #####Ludum Dare 33 8/21/15
 #####San Fransisco, CA
 
+## The Game
+
+Sneak into the castle and assassinate the princess.
+
+
 ###*Team*
 
 ####Code:
@@ -15,8 +20,4 @@
 
 - Brandon Hernandez
 
-
-## The Game
-
-Sneak into the castle and assassinate the princess.
 
