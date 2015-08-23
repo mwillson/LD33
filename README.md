@@ -2,12 +2,16 @@
 #####Ludum Dare 33 8/21/15
 #####Theme: You are the Monster
 #####San Fransisco, CA
-#####Created using Unity.
 
 ## The Game
 
 Sneak into the castle and assassinate the princess.
 
+## The Tech
+
+Created using Unity.
+
+## The Credits
 
 ####Code:
 
