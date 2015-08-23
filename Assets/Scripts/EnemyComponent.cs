@@ -26,7 +26,6 @@ public class EnemyComponent : MonoBehaviour {
 		//see if player is in raycast
 		if (PlayerInRaycast ()) {
 			//then attack the player
-			Debug.Log("HITHITHIT");
 		}
 	} 
 
