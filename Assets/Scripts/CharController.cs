@@ -9,6 +9,7 @@ public class CharController : MovingUnit {
 	public float speed = 4.0f;
 	public float dashTimer;
 	public float maxDash = 0.40f;
+	public GameObject projectile;
 
 	// Use this for initialization
 	void Start () {
@@ -64,6 +65,24 @@ public class CharController : MovingUnit {
 				dashState = DashState.Ready;
 			}
 			break;
+		}
+	
+		if (Input.GetButtonDown ("Fire1")) {
+			Vector2 shotdirection = new Vector2(Input.GetAxis("RightStickH"), Input.GetAxis("RightStickV"));
+			GameObject projectileobj = (GameObject)Instantiate(projectile, transform.position, transform.rotation);
+			//if you're not pointing in a direction
+			//shoot forward the way you are moving
+			if(shotdirection == new Vector2(0,0)){
+				if(direction == new Vector3(0,0,0)){
+					projectileobj.GetComponent<Rigidbody2D>().velocity = new Vector2(10,0);
+				}else {
+					projectileobj.GetComponent<Rigidbody2D>().velocity = direction * 10;
+				}
+			}
+			//else shoot in the direction you are holding
+			else {
+				projectileobj.GetComponent<Rigidbody2D>().velocity = shotdirection * 10;
+			}
 		}
 	}
 
