@@ -5,6 +5,8 @@ public class GameManager : MonoBehaviour {
 	public BoardManager boardScript;
 	public static GameManager instance = null;
 
+	private string currentState;
+
 	private static Queue notifications = new Queue();
 
 	public static void Notify(string str){
@@ -13,6 +15,7 @@ public class GameManager : MonoBehaviour {
 
 
 	void Awake() {
+		currentState = Config.STARTED;
 		if (instance == null)
 			instance = this;
 		else if (instance != this)
@@ -31,8 +34,11 @@ public class GameManager : MonoBehaviour {
 		if (notifications.Count != 0) {
 			string s = (string)notifications.Dequeue ();
 			/* WON THE GAME*/
-			if (s == Config.WINS){
-				Debug.Log ("FEKKING WON");
+			if (s == Config.WIN_NOTIFICATION && currentState != Config.WON){
+				Debug.Log ("FEKKING WON -- not sure what to do lol");
+				currentState = Config.WON;
+
+				Application.LoadLevel("wins");
 
 			}
 		}

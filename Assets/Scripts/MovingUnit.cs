@@ -21,7 +21,7 @@ public class MovingUnit : MonoBehaviour {
 		if (this.GetType().Name.Equals ("CharController")) {
 			hit = Physics2D.Linecast (start, end, princessLayer);
 			if (hit.transform != null){
-				GameManager.Notify(Config.WINS);
+				GameManager.Notify(Config.WIN_NOTIFICATION);
 			}
 		} 
 
