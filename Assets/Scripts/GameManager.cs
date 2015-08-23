@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 		if (notifications.Count != 0) {
 			string s = (string)notifications.Dequeue ();
-
 			/* WON THE GAME*/
 			if (s == Config.WINS){
 				Debug.Log ("FEKKING WON");

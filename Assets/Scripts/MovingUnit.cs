@@ -18,8 +18,7 @@ public class MovingUnit : MonoBehaviour {
 		boxCollider.enabled = false;
 
 		/* If this is the player */
-		if (this.GetType ().Name.Equals ("CharController")) {
-
+		if (this.GetType().Name.Equals ("CharController")) {
 			hit = Physics2D.Linecast (start, end, princessLayer);
 			if (hit.transform != null){
 				GameManager.Notify(Config.WINS);
