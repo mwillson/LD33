@@ -34,16 +34,18 @@ public class EnemyController : MonoBehaviour {
 			}
 			break;
 		case MoveState.Wander:
+			speed = 2.0f;
 			idling = false;
 			transform.position = Vector3.MoveTowards (transform.position, waypoint, step);
-			
 			break;
 		case MoveState.Follow:
+			idling = false;
+			speed = 4.0f;
+			transform.position = Vector3.MoveTowards(transform.position, player.position, step);
 			Debug.Log (player.position);
 			break;
 		}
 		if(transform.position == waypoint) {
-			Debug.Log ("We can idle " + transform.position);
 			moveState = MoveState.Idle;
 		}
 	}
@@ -57,10 +59,13 @@ public class EnemyController : MonoBehaviour {
 	//wait for a random time, then change the waypoint
 	IEnumerator DoIdleStuffs(){
 			idling = true;
-			Debug.Log ("We Idled!" + waypoint);
-			waypoint = new Vector3 (transform.position.x + 2, transform.position.y, transform.position.z);
+			//random values between -5 and 5
+			float movex = Random.value * Random.Range(-1, 2) * 2;
+			float movey = Random.value * Random.Range(-1, 2) * 2;
+
+			Debug.Log (movex + ": " + movey);
+			waypoint = new Vector3 (transform.position.x + movex, transform.position.y + movey, transform.position.z);
 			float timev = (Random.value + 2.0f) * 2.0f;
-			Debug.Log (timev);
 			yield return new WaitForSeconds (timev);
 			moveState = MoveState.Wander;
 	}
@@ -69,7 +74,7 @@ public class EnemyController : MonoBehaviour {
 		
 
 
-	void SetMoveState(string state){
+	public void SetMoveState(string state){
 		switch (state) {
 			case "Idle":
 				moveState = MoveState.Idle;
