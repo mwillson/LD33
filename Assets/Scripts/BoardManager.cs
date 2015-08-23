@@ -8,8 +8,18 @@ public class BoardManager : MonoBehaviour {
 
         private List <Vector3> gridPositions = new List <Vector3> ();   //A list of possible locations to place tiles.
 
-        private int columns = 10;
+        //private int columns = 10;
         private int rows = 10;
+	
+	List<int[]> data = new List<int[]>(){
+		{	1,	1,	1,	1,	1,	1,	1,	1,	1,	1,	1},
+		{	1,	1,	1,	0,	0,	0,	0,	0,	0,	0,	1},
+		{	1,	1,	0,	0,	1,	0,	0,	0,	1,	1,	1},
+		{	1,	1,	1,	0,	0,	0,	1,	0,	0,	0,	1}
+	};
+
+		private int columns;
+
 		private Transform boardHolder;                                  //A variable to store a reference to the transform of our Board object.
 	
       /*  public void InitialiseList ()
@@ -32,9 +42,11 @@ public class BoardManager : MonoBehaviour {
 //Sets up the outer walls and floor (background) of the game board.
         public void BoardSetup ()
         {
+
             //Instantiate Board and set boardHolder to its transform.
             boardHolder = new GameObject ("Board").transform;
-
+			columns = data[0].Length;
+			rows =  data.Count; //mapArray.Length;
             //Loop along x axis, starting from -1 (to fill corner) with floor or outerwall edge tiles.
             for(int x = 0; x < columns; x++)
             {
