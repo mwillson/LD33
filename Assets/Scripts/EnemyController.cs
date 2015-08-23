@@ -3,7 +3,7 @@ using System.Collections;
 
 // Controls movement behaviors of enemy
 
-public class EnemyController : MonoBehaviour {
+public class EnemyController : MovingUnit {
 
 	public MoveState moveState;
 	public Vector3 waypoint;
@@ -20,6 +20,8 @@ public class EnemyController : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag ("Player").transform;
 		moveState = MoveState.Idle;
 		idling = false;
+
+		base.Prepare ();
 	}
 	
 	// Update is called once per frame
@@ -28,6 +30,7 @@ public class EnemyController : MonoBehaviour {
 	//	if (moveState == MoveState.Wander) {
 	//		Debug.Log (transform.position);
 	//	}
+
 		switch (moveState) {
 		case MoveState.Idle:
 			if(!idling){
@@ -37,6 +40,20 @@ public class EnemyController : MonoBehaviour {
 		case MoveState.Wander:
 			speed = 2.0f;
 			idling = false;
+
+			Vector3 normalVector = new Vector3( transform.position.x - waypoint.x, transform.position.y - waypoint.y, 0);
+			normalVector.Normalize();
+			RaycastHit2D hit;
+			bool canMove = base.CanMove ( (int)normalVector.x, (int)normalVector.y, out hit);
+
+			if (!canMove) {
+				Debug.Log("CANT MOVE");
+				SetMoveState("Idle");
+				return;
+			} else { // can move! : D
+
+			}
+
 			transform.position = Vector3.MoveTowards (transform.position, waypoint, step);
 			break;
 		case MoveState.Follow:
@@ -66,7 +83,7 @@ public class EnemyController : MonoBehaviour {
 			movex = Random.value * Random.Range(-1, 2) * 2;
 			movey = Random.value * Random.Range(-1, 2) * 2;
 
-			Debug.Log (movex + ": " + movey);
+		//	Debug.Log (movex + ": " + movey);
 			float timev = (Random.value + 2.0f) * 2.0f;
 			yield return new WaitForSeconds (timev);
 			waypoint = new Vector3 (transform.position.x + movex, transform.position.y + movey, transform.position.z);
