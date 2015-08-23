@@ -11,7 +11,7 @@ public class Splash : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		i++;
-		if ( i > 300){
+		if ( i > 150){
 			Application.LoadLevel("level1");
 		}
 	}
