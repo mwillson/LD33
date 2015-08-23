@@ -10,6 +10,7 @@ public class EnemyComponent : MonoBehaviour {
 
 	public LayerMask PlayerLayer;
 	string positionFacing = "down";
+	private EnemyController movementcontroller;
 
 	private BoxCollider2D boxCollider;
 
@@ -18,6 +19,7 @@ public class EnemyComponent : MonoBehaviour {
 	void Start () {
 		boxCollider = GetComponent<BoxCollider2D> ();
 		lineRenderer = GetComponent<LineRenderer> ();
+		movementcontroller = GetComponent<EnemyController> ();
 	}
 	
 	// Update is called once per frame
@@ -26,6 +28,7 @@ public class EnemyComponent : MonoBehaviour {
 		//see if player is in raycast
 		if (PlayerInRaycast ()) {
 			//then attack the player
+			movementcontroller.SetMoveState("Follow");
 			Debug.Log("HITHITHIT");
 		}
 	} 
@@ -55,6 +58,7 @@ public class EnemyComponent : MonoBehaviour {
 		if (hit.transform == null)
 			return false;
 		else { // hit player
+
 			return true;
 		}
 	}
