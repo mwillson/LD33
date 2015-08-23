@@ -1,6 +1,6 @@
 #Princess Hunter
-#####Theme: You are the Monster
 #####Ludum Dare 33 8/21/15
+#####Theme: You are the Monster
 #####San Fransisco, CA
 #####Created using Unity.
 
