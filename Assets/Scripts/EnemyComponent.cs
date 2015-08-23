@@ -13,10 +13,11 @@ public class EnemyComponent : MonoBehaviour {
 
 	private BoxCollider2D boxCollider;
 
+	LineRenderer lineRenderer;
 	// Use this for initialization
 	void Start () {
 		boxCollider = GetComponent<BoxCollider2D> ();
-
+		lineRenderer = GetComponent<LineRenderer> ();
 	}
 	
 	// Update is called once per frame
@@ -27,19 +28,29 @@ public class EnemyComponent : MonoBehaviour {
 			//then attack the player
 			Debug.Log("HITHITHIT");
 		}
-	}
+	} 
 
 	bool PlayerInRaycast(){
-		Vector2 start = transform.position;
+		Vector3 start = transform.position;
 
 		//this should be based on the posiiton it is facing
-		Vector3 end = start +  new Vector2(1,1);
+		Vector3 end = start +  new Vector3(0,5, start.z);
 
 		// remove itself from box collider
 		boxCollider.enabled = false;
-		RaycastHit2D hit = Physics2D.Raycast (start, end, PlayerLayer);
+		RaycastHit2D hit = Physics2D.Linecast (start, end, PlayerLayer);
 		boxCollider.enabled = true;
+//		Debug.Log (transform.position);
+	//	Debug.Log (start + " " + end);
 
+		start.z = -0.1f;
+		end.z = -0.1f;
+		lineRenderer.SetPosition (0, start);
+		lineRenderer.SetPosition (1, end);
+		lineRenderer.sortingLayerName = "Effects";
+
+		//	Debug.DrawRay (start, end, Color.green, 1, false);
+//		Debug.Log (hit.transform);
 		//didnt hit anything
 		if (hit.transform == null)
 			return false;
