@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		boardScript.BoardSetup ();
-		Debug.Log ("STARTED");
 		//boardScript.InitialiseList ();
 	}
 	

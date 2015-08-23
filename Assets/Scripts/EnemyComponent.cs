@@ -37,7 +37,7 @@ public class EnemyComponent : MonoBehaviour {
 
 		//this should be based on the posiiton it is facing
 		Vector3 end = start + (Vector3.Normalize(movementcontroller.GetWaypoint ()) * 3);
-		Debug.Log (movementcontroller.GetWaypoint());
+	//	Debug.Log (movementcontroller.GetWaypoint());
 
 		// remove itself from box collider
 		boxCollider.enabled = false;
