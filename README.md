@@ -1,7 +1,7 @@
 #Princess Hunter
 #####Ludum Dare 33 8/21/15
 #####You are the Monster
-#####San Francisco, CA
+#####San Francisco
 
 ## The Game
 
