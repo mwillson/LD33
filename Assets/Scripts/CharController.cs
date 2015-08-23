@@ -6,7 +6,7 @@ public class CharController : MovingUnit {
 	public Vector3 direction;
 	public Vector3 savedvelocity;
 	public DashState dashState;
-	public float speed = 5.0f;
+	public float speed = 4.0f;
 	public float dashTimer;
 	public float maxDash = 0.40f;
 
@@ -35,7 +35,7 @@ public class CharController : MovingUnit {
 			transform.Translate(direction * speed * Time.deltaTime);
 			break;
 		case DashState.Dashing:
-			transform.Translate(direction * 2 * speed * Time.deltaTime);
+			transform.Translate(direction * 1.75f * speed * Time.deltaTime);
 			break;
 		case DashState.Cooldown:
 			transform.Translate(0, 0, 0);
