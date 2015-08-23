@@ -1,7 +1,8 @@
 # LD33
-## Theme : You are the Monster
+## Theme: You are the Monster
 
-Ludum Dare 33 8/21/15
+#####Ludum Dare 33 8/21/15
+#####San Fransisco, CA
 
 ###*Team*
 
@@ -12,5 +13,5 @@ Ludum Dare 33 8/21/15
 
 ####Art: 
 
--Brandon Hernandez
+- Brandon Hernandez
 
