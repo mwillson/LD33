@@ -3,14 +3,14 @@
 
 Ludum Dare 33 8/21/15
 
-Team:
+###*Team*
 
-Code:
+####Code:
 
 - Mark Willson
 - Hassan Shaikley
 
-Art: 
+####Art: 
 
 -Brandon Hernandez
 
