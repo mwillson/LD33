@@ -3,7 +3,7 @@ using System.Collections;
 
 // Controls movement behaviors of enemy
 
-public class EnemyController : MonoBehaviour {
+public class EnemyController : MovingUnit {
 
 	public MoveState moveState;
 	public Vector3 waypoint;
@@ -28,6 +28,11 @@ public class EnemyController : MonoBehaviour {
 	//	if (moveState == MoveState.Wander) {
 	//		Debug.Log (transform.position);
 	//	}
+		bool canMove = base.CanMove ( (int) Input.GetAxisRaw ("Horizontal"), (int)Input.GetAxisRaw ("Vertical"), out hit);//
+		
+		if (!canMove) {
+			return;
+		}
 		switch (moveState) {
 		case MoveState.Idle:
 			if(!idling){
@@ -37,6 +42,14 @@ public class EnemyController : MonoBehaviour {
 		case MoveState.Wander:
 			speed = 2.0f;
 			idling = false;
+
+			RaycastHit2D hit;
+			bool canMove = base.CanMove ( (int) Input.GetAxisRaw ("Horizontal"), (int)Input.GetAxisRaw ("Vertical"), out hit);
+			
+			if (!canMove) {
+				return;
+			}
+
 			transform.position = Vector3.MoveTowards (transform.position, waypoint, step);
 			break;
 		case MoveState.Follow:
