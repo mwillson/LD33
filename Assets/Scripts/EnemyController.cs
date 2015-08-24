@@ -88,8 +88,8 @@ public class EnemyController : MovingUnit {
 	IEnumerator DoIdleStuffs(){
 			idling = true;
 			//random values between -5 and 5
-			movex = Random.value * Random.Range(-1, 2) * 2;
-			movey = Random.value * Random.Range(-1, 2) * 2;
+			movex = Random.value * Random.Range(-1, 2) * 3;
+			movey = Random.value * Random.Range(-1, 2) * 3;
 
 		//	Debug.Log (movex + ": " + movey);
 			float timev = (Random.value + 2.0f) * 2.0f;

@@ -1,4 +1,18 @@
 ﻿<Properties>
+<<<<<<< HEAD
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EnemyAttackScript.cs">
+    <Files>
+      <File FileName="Assets\Scripts\EnemyAttackScript.cs" Line="17" Column="24" />
+      <File FileName="Assets\Scripts\EnemyController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\EnemyComponent.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Loader.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\BoardManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MovingUnit.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CharController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\DeathScript.cs" Line="1" Column="1" />
+=======
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/EnemyController.cs">
     <Files>
@@ -11,6 +25,7 @@
       <File FileName="Assets/Scripts/EnemyController.cs" Line="71" Column="84" />
       <File FileName="Assets/Scripts/EnemyComponent.cs" Line="28" Column="13" />
       <File FileName="Assets/Scripts/Splash.cs" Line="14" Column="14" />
+>>>>>>> cee6befc6e0d2a1a3c848016d204498eefbf05f5
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -1,11 +1,13 @@
 fileFormatVersion: 2
 guid: 63619f989e62faa408382f92225c3905
-timeCreated: 1440219635
+timeCreated: 1440321713
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: knight_0
     21300002: knight_1
+    21300004: knight_2
+    21300006: knight_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -59,7 +61,7 @@ TextureImporter:
         width: 10
         height: 23
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: knight_1
       rect:
@@ -67,6 +69,26 @@ TextureImporter:
         x: 24
         y: 575
         width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: knight_2
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 575
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: knight_3
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 575
+        width: 14
         height: 21
       alignment: 0
       pivot: {x: 0, y: 0}
