@@ -33,7 +33,7 @@ public class MovingUnit : MonoBehaviour {
 		if (hit.transform == null) {
 			return true;
 		}
-		
-		return false;
+		return true;	
+	//	return false;
 	}
 }
