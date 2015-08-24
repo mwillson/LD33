@@ -29,7 +29,13 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																													GlobalSection(MonoDevelopProperties) = preSolution
+																														GlobalSection(MonoDevelopProperties) = preSolution
+=======
+																											GlobalSection(MonoDevelopProperties) = preSolution
+=======
+																					GlobalSection(MonoDevelopProperties) = preSolution
+>>>>>>> Recongfigured map. Notification queue. Win condition
+>>>>>>> cee6befc6e0d2a1a3c848016d204498eefbf05f5
 =======
 													GlobalSection(MonoDevelopProperties) = preSolution
 >>>>>>> sexy_map_time
