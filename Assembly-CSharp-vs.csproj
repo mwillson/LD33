@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\DestroyProjectile.cs" />
      <Compile Include="Assets\Scripts\EnemyComponent.cs" />
      <Compile Include="Assets\Scripts\EnemyController.cs" />
+     <Compile Include="Assets\Scripts\Explosion.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Loader.cs" />
      <Compile Include="Assets\Scripts\MovingUnit.cs" />

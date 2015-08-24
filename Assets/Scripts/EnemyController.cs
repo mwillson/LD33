@@ -12,6 +12,9 @@ public class EnemyController : MovingUnit {
 	//are we currently idling?
 	//we need this so we can execute the waitforseconds ONCE and ONLY ONCE
 	public bool idling;
+
+	public GameObject explosion;
+
 	float step, movex, movey;
 
 
@@ -62,6 +65,11 @@ public class EnemyController : MovingUnit {
 			waypoint = player.position;
 			movex = player.position.x - transform.position.x;
 			movey = player.position.y - transform.position.y;
+			if (Mathf.Abs(movex) < 2 && Mathf.Abs (movey) < 2){
+				//GameObject explosion = GameObject.CreatePrimitive(PrimitiveType.Cube);
+				GameObject instance =
+				Instantiate (explosion, transform.position, Quaternion.identity) as GameObject;
+			}
 			transform.position = Vector3.MoveTowards(transform.position, waypoint, step);
 			break;
 		}
