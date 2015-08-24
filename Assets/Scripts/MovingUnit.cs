@@ -14,7 +14,7 @@ public class MovingUnit : MonoBehaviour {
 	protected bool CanMove (int xDir, int yDir, out RaycastHit2D hit)
 	{
 		Vector2 start = transform.position;
-		Vector2 end = start + new Vector2 (xDir, yDir);
+		Vector2 end = start + new Vector2 ((float)(xDir*.9),(float) (yDir*.9));
 		boxCollider.enabled = false;
 
 		/* If this is the player */
