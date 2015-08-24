@@ -20,6 +20,16 @@ public class EnemyComponent : MonoBehaviour {
 		boxCollider = GetComponent<BoxCollider2D> ();
 		lineRenderer = GetComponent<LineRenderer> ();
 		movementcontroller = GetComponent<EnemyController> ();
+		lineRenderer.material = new Material (Shader.Find("Particles/Additive"));
+		Color c1 = Color.white;
+
+		Color c2 = Color.white;
+		c1.a = .3f;
+		c2.a = .3f;
+
+		lineRenderer.SetColors(c1, c2);
+
+	
 	}
 	
 	// Update is called once per frame
