@@ -5,5 +5,5 @@ public class Config : MonoBehaviour {
 	public static string WIN_NOTIFICATION = "won";
 	public static string STARTED = "started";
 	public static string WON = "won";
-
+	public static string LOSE_NOTIFICATION = "lost";
 }

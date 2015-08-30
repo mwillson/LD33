@@ -35,8 +35,8 @@ public class EnemyComponent : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		//see if player is in raycast
-		if (PlayerInRaycast ()) {
+		//see if player is in raycast and this enemy is not currently attacking the player
+		if (PlayerInRaycast () && (movementcontroller.GetMoveState() != "Attack")) {
 			//then attack the player
 			movementcontroller.SetMoveState("Follow");
 		}
@@ -47,14 +47,12 @@ public class EnemyComponent : MonoBehaviour {
 
 		//this should be based on the posiiton it is facing
 		Vector3 end = start + (Vector3.Normalize(movementcontroller.GetWaypoint ()) * 3);
-
+	
 
 		// remove itself from box collider
 		boxCollider.enabled = false;
 		RaycastHit2D hit = Physics2D.Linecast (start, end, PlayerLayer);
 		boxCollider.enabled = true;
-//		Debug.Log (transform.position);
-	//	Debug.Log (start + " " + end);
 
 		start.z = -0.1f;
 		end.z = -0.1f;

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r4.1">
+    <folder id="0">
+        <file id="0" name="blood.png" width="287" height="79" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="1" name="Body.png" width="451" height="502" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="2" name="Deadknight.png" width="299" height="127" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="3" name="Deathscene_Arm_Princess.png" width="651" height="462" pivot_x="0.101392" pivot_y="0.694678"/>
+        <file id="4" name="deathscenearm.png" width="186" height="221" pivot_x="0.166667" pivot_y="0.217195"/>
+        <file id="5" name="Lowerjaw.png" width="141" height="97" pivot_x="0.22695" pivot_y="0.649485"/>
+        <file id="6" name="Room.png" width="792" height="612" pivot_x="0.5" pivot_y="0.5"/>
+    </folder>
+    <entity id="0" name="entity_000">
+        <obj_info name="entity_000_Room" realname="Room" type="sprite">
+            <frames>
+                <i folder="0" file="6"/>
+            </frames>
+        </obj_info>
+        <obj_info name="entity_000_Deathscene_Arm_Princess" realname="Deathscene_Arm_Princess" type="sprite">
+            <frames>
+                <i folder="0" file="3"/>
+            </frames>
+        </obj_info>
+        <obj_info name="entity_000_blood" realname="blood" type="sprite">
+            <frames>
+                <i folder="0" file="0"/>
+            </frames>
+        </obj_info>
+        <obj_info name="entity_000_Lowerjaw" realname="Lowerjaw" type="sprite">
+            <frames>
+                <i folder="0" file="5"/>
+            </frames>
+        </obj_info>
+        <obj_info name="entity_000_Deadknight" realname="Deadknight" type="sprite">
+            <frames>
+                <i folder="0" file="2"/>
+            </frames>
+        </obj_info>
+        <obj_info name="entity_000_deathscenearm" realname="deathscenearm" type="sprite">
+            <frames>
+                <i folder="0" file="4"/>
+            </frames>
+        </obj_info>
+        <obj_info name="entity_000_Body" realname="Body" type="sprite">
+            <frames>
+                <i folder="0" file="1"/>
+            </frames>
+        </obj_info>
+        <animation id="0" name="Death" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="Room" folder="0" file="6" abs_x="-396" abs_y="306" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="blood" folder="0" file="0" abs_x="138.546773" abs_y="-30.922794" abs_angle="360" abs_scale_x="0.622958" abs_scale_y="0.669118" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" name="Deadknight" folder="0" file="2" abs_x="97.362121" abs_y="17.911765" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" name="Body" folder="0" file="1" abs_x="-395.5" abs_y="196.714286" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" name="Lowerjaw" folder="0" file="5" abs_x="-120.571379" abs_y="125.428526" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="6" key="0" z_index="4"/>
+                    <object_ref id="5" name="deathscenearm" folder="0" file="4" abs_x="-79.571491" abs_y="17.285619" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="4" key="0" z_index="5"/>
+                    <object_ref id="6" name="Deathscene_Arm_Princess" folder="0" file="3" abs_x="-231.526329" abs_y="171.578839" abs_angle="342.338111" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="5" key="0" z_index="6"/>
+                </key>
+                <key id="1" time="500">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" timeline="6" key="1" z_index="4"/>
+                    <object_ref id="5" timeline="4" key="0" z_index="5"/>
+                    <object_ref id="6" timeline="5" key="0" z_index="6"/>
+                </key>
+                <key id="2" time="960">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" timeline="6" key="1" z_index="4"/>
+                    <object_ref id="5" timeline="4" key="1" z_index="5"/>
+                    <object_ref id="6" timeline="5" key="0" z_index="6"/>
+                </key>
+                <key id="3" time="1000">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" timeline="6" key="1" z_index="4"/>
+                    <object_ref id="5" timeline="4" key="1" z_index="5"/>
+                    <object_ref id="6" timeline="5" key="1" z_index="6"/>
+                </key>
+            </mainline>
+            <timeline id="0" obj="0" name="Room">
+                <key id="0" spin="0">
+                    <object folder="0" file="6"/>
+                </key>
+            </timeline>
+            <timeline id="1" obj="2" name="blood">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="227.941176" y="-57.352941" scale_x="0.622958" scale_y="0.669118"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="0" x="227.941176" y="-57.352941" scale_x="0.954468" scale_y="1.025193"/>
+                </key>
+            </timeline>
+            <timeline id="2" obj="4" name="Deadknight">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="246.862121" y="-45.588235"/>
+                </key>
+            </timeline>
+            <timeline id="3" obj="6" name="Body">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-170" y="-54.285714"/>
+                </key>
+            </timeline>
+            <timeline id="4" obj="5" name="deathscenearm">
+                <key id="0">
+                    <object folder="0" file="4" x="-48.571429" y="-155.714286"/>
+                </key>
+                <key id="1" time="960" spin="-1">
+                    <object folder="0" file="4" x="-51.696429" y="-149.464286" angle="4.123397" scale_y="1"/>
+                </key>
+            </timeline>
+            <timeline id="5" obj="1" name="Deathscene_Arm_Princess">
+                <key id="0">
+                    <object folder="0" file="3" x="-211.428571" y="17.142857" angle="342.338111" scale_y="1"/>
+                </key>
+                <key id="1" time="1000" spin="-1">
+                    <object folder="0" file="3" x="-211.428571" y="17.142857" angle="359.529409" scale_x="1"/>
+                </key>
+            </timeline>
+            <timeline id="6" obj="3" name="Lowerjaw">
+                <key id="0" spin="-1">
+                    <object folder="0" file="5" x="-88.571429" y="91.428571"/>
+                </key>
+                <key id="1" time="500">
+                    <object folder="0" file="5" x="-90.133929" y="92.991071" angle="356.274461" scale_y="1"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

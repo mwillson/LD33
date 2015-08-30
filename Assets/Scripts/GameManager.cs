@@ -40,6 +40,9 @@ public class GameManager : MonoBehaviour {
 
 				Application.LoadLevel("wins");
 
+			}else if(s == Config.LOSE_NOTIFICATION){
+				Debug.Log ("You Dead");
+				Application.LoadLevel("loses");
 			}
 		}
 	}
