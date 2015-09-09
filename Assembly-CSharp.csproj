@@ -49,7 +49,9 @@
      <Compile Include="Assets\Scripts\BoardManager.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\CharController.cs" />
+     <Compile Include="Assets\Scripts\ConeSightScript.cs" />
      <Compile Include="Assets\Scripts\Config.cs" />
+     <Compile Include="Assets\Scripts\DeathAnimationScript.cs" />
      <Compile Include="Assets\Scripts\DeathScript.cs" />
      <Compile Include="Assets\Scripts\DestroyProjectile.cs" />
      <Compile Include="Assets\Scripts\EnemyAttackScript.cs" />
@@ -57,7 +59,9 @@
      <Compile Include="Assets\Scripts\EnemyController.cs" />
      <Compile Include="Assets\Scripts\Explosion.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\KillByEnemyScript.cs" />
      <Compile Include="Assets\Scripts\Loader.cs" />
+     <Compile Include="Assets\Scripts\MenuScript.cs" />
      <Compile Include="Assets\Scripts\MovingUnit.cs" />
      <Compile Include="Assets\Scripts\PlayAgainChoice.cs" />
      <Compile Include="Assets\Scripts\Splash.cs" />

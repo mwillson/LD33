@@ -12,7 +12,7 @@ public class Splash : MonoBehaviour {
 	void Update () {
 		i++;
 		if ( i > 150){
-			Application.LoadLevel("level1");
+			Application.LoadLevel("mainmenu");
 		}
 	}
 }

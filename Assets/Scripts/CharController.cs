@@ -6,17 +6,24 @@ public class CharController : MonoBehaviour {
 	public Vector3 direction;
 	public Vector3 savedvelocity;
 	public DashState dashState;
-	public float speed = 3.5f;
+	public float speed = 1.75f;
 	public float dashTimer;
 	public float maxDash = 0.40f;
 	public GameObject projectile;
 	public Vector2 savedposition;
 	Vector3 previouslocation, currentlocation, targetloc;
 	Quaternion newrotation;
+	Animator anim;
+	//direction we are facing
+	Vector3 facing;
+	//melee attack gameobject that we instantiate
+	GameObject attackobj;
 
 	// Use this for initialization
 	void Start () {
 		dashState = DashState.Ready;
+		anim = GetComponent<Animator> ();
+		facing = new Vector3 (1, 0, 0);
 	}
 
 	// Update is called once per frame
@@ -27,19 +34,16 @@ public class CharController : MonoBehaviour {
 		//base.CanMove(Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw("Vertical"), out hit);
 		//Debug.Log (Input.GetAxisRaw ("Horizontal"));
 
-		targetloc = transform.position + direction;
-		newrotation = Quaternion.LookRotation(targetloc-transform.position, Vector3.forward);
+		//if we have pushed the control stick change facing direction
+		if (direction != new Vector3 (0, 0, 0)) {
+			facing = direction;
+		}
+	 
 
-		//do some rotation for movement
-		
-		if(direction != new Vector3(0,0,0)){
-			
-			
-			Debug.Log (targetloc-transform.position);
-			newrotation.x = 0;
-			newrotation.y = 0;
-
-			transform.GetChild(0).rotation = newrotation*Quaternion.Euler(0,0,270);
+		if (direction != new Vector3 (0, 0, 0)) {
+			anim.SetBool("Walking", true);
+		} else {
+			anim.SetBool("Walking", false);
 		}
 		//Quaternion.Slerp (transform.rotation, 
 		//                                      newrotation,
@@ -63,6 +67,26 @@ public class CharController : MonoBehaviour {
 
 	}
 
+	void LateUpdate(){
+		//do some rotation for movement
+		//have to do this in lateupdate after all subparts of sprite are drawn
+		targetloc = transform.position + direction;
+		//newrotation = Quaternion.LookRotation(targetloc-transform.position, Vector3.forward);
+		
+
+
+		//if we are not idling, calculate the new rotation to switch to
+		if (direction != new Vector3 (0, 0, 0)) {
+			newrotation = Quaternion.LookRotation(targetloc-transform.position, Vector3.forward);
+			newrotation = newrotation * Quaternion.Euler (0, 0, 270);
+		}
+		
+			newrotation.x = 0;
+			newrotation.y = 0;
+
+			transform.GetChild (0).rotation = newrotation;
+	}
+
 	void FixedUpdate () {
 
 
@@ -83,7 +107,7 @@ public class CharController : MonoBehaviour {
 				dashState = DashState.Cooldown;
 			}
 
-			transform.Translate(direction * 1.75f * speed * Time.deltaTime);
+			transform.Translate(direction * 2.75f * speed * Time.deltaTime);
 
 			break;
 		case DashState.Cooldown:
@@ -101,35 +125,33 @@ public class CharController : MonoBehaviour {
 		
 		}
 	
+		//do an attack
 		if (Input.GetButtonDown ("Fire1")) {
-			Vector2 shotdirection = new Vector2(Input.GetAxis("RightStickH"), Input.GetAxis("RightStickV"));
-			GameObject projectileobj = (GameObject)Instantiate(projectile, transform.position, transform.rotation);
-			//if you're not pointing in a direction
-			//shoot forward the way you are moving
-			if(shotdirection == new Vector2(0,0)){
-				if(direction == new Vector3(0,0,0)){
-					projectileobj.GetComponent<Rigidbody2D>().velocity = new Vector2(10,0);
-				}else {
-					projectileobj.GetComponent<Rigidbody2D>().velocity = direction * 10;
-				}
-			}
-			//else shoot in the direction you are holding
-			else {
-				projectileobj.GetComponent<Rigidbody2D>().velocity = shotdirection * 10;
-			}
+			//first create a normalized vector so the attack is always equidistantly in front of the player
+			Vector2 toadd = new Vector2(facing.x*1.3f, facing.y*1.3f);
+			toadd.Normalize();
+			Vector3 toadd3 = toadd;
+			//create hitbox object
+			attackobj = (GameObject)Instantiate(projectile, transform.position + toadd3, transform.rotation);
+			//let it do its thang
+			StartCoroutine(AttackTime());
 		}
+
 	}
 
+	//wait a bit before destroying attack hitbox object
+	IEnumerator AttackTime(){
+		yield return new WaitForSeconds (.2f);
+		GameObject.Destroy(attackobj);
+	}
+
+	//enumerator describing states of dash-ability for player
 	public enum DashState{
 		Ready,
 		Dashing,
 		Cooldown
 	}
 
-	public void OnTriggerEnter2D(Collider2D other){
-		if (other.gameObject == GameObject.FindGameObjectWithTag ("KnightAttack")) {
-			GameManager.Notify (Config.LOSE_NOTIFICATION);
-		}
-	}
+
 
 }

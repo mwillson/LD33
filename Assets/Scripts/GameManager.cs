@@ -35,14 +35,14 @@ public class GameManager : MonoBehaviour {
 			string s = (string)notifications.Dequeue ();
 			/* WON THE GAME*/
 			if (s == Config.WIN_NOTIFICATION && currentState != Config.WON){
-				Debug.Log ("FEKKING WON -- not sure what to do lol");
+				//Debug.Log ("FEKKING WON -- not sure what to do lol");
 				currentState = Config.WON;
 
-				Application.LoadLevel("wins");
+				Application.LoadLevel("death1");
 
 			}else if(s == Config.LOSE_NOTIFICATION){
 				Debug.Log ("You Dead");
-				Application.LoadLevel("loses");
+				Application.LoadLevel("mainmenu");
 			}
 		}
 	}

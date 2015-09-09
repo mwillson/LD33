@@ -13,8 +13,12 @@ public class EnemyComponent : MonoBehaviour {
 	private EnemyController movementcontroller;
 
 	private BoxCollider2D boxCollider;
+	public float fovAngle = 45f;
 
 	LineRenderer lineRenderer;
+
+	GameObject playerobj;
+
 	// Use this for initialization
 	void Start () {
 		boxCollider = GetComponent<BoxCollider2D> ();
@@ -29,11 +33,12 @@ public class EnemyComponent : MonoBehaviour {
 
 		lineRenderer.SetColors(c1, c2);
 
-	
+		playerobj = GameObject.FindGameObjectWithTag ("Player");
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
 
 		//see if player is in raycast and this enemy is not currently attacking the player
 		if (PlayerInRaycast () && (movementcontroller.GetMoveState() != "Attack")) {
@@ -43,6 +48,7 @@ public class EnemyComponent : MonoBehaviour {
 	} 
 
 	bool PlayerInRaycast(){
+		Vector3 dirtoplayer = playerobj.transform.position - transform.position;
 		Vector3 start = transform.position;
 
 		//this should be based on the posiiton it is facing
@@ -63,11 +69,26 @@ public class EnemyComponent : MonoBehaviour {
 		//	Debug.DrawRay (start, end, Color.green, 1, false);
 //		Debug.Log (hit.transform);
 		//didnt hit anything
-		if (hit.transform == null)
+		float theangle = Vector3.Angle (dirtoplayer, end - start);
+		//find distance to player object
+		float disttoplayer = Mathf.Sqrt (Mathf.Abs (dirtoplayer.x*dirtoplayer.x)+ Mathf.Abs (dirtoplayer.y*dirtoplayer.y));
+
+		//if We are close enough and within fov, yes, we are seen
+		if (theangle < fovAngle && disttoplayer < 3.0f) {
+			Debug.Log(theangle);
+			Debug.Log ("disttoplayer: "+disttoplayer);
+			Debug.Log ("start: " + start);
+			Debug.Log ("end: " + end);
+			return true;
+		} else {
+			return false;
+		}
+		/*if (hit.transform == null)
 			return false;
 		else { // hit player
 
 			return true;
-		}
+		}*/
+
 	}
 }
