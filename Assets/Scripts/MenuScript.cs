@@ -24,12 +24,12 @@ public class MenuScript : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		if (Input.GetAxisRaw ("Vertical") == -1) {
+		if (Input.GetAxisRaw ("Vertical_P1") == -1) {
 			if(!axisinuse){
 				axisinuse = true;
 				MoveDown();
 			}
-		} else if (Input.GetAxisRaw ("Vertical") == 1) {
+		} else if (Input.GetAxisRaw ("Vertical_P1") == 1) {
 			if(!axisinuse){
 				axisinuse = true;
 				MoveUp();
@@ -38,7 +38,7 @@ public class MenuScript : MonoBehaviour {
 			axisinuse = false;
 		}
 
-		if (Input.GetButtonDown ("Fire1")) {
+		if (Input.GetButtonDown ("Fire1_P1")) {
 			HandleSelection(currentitem.name);
 		}
 	}
@@ -70,6 +70,8 @@ public class MenuScript : MonoBehaviour {
 	void HandleSelection(string name) {
 		if (name == "Play") {
 			Application.LoadLevel ("level1");
+		} else if (name == "Quit") {
+			Application.Quit();
 		} else {
 			Debug.Log ("Unknown Selection");
 		}

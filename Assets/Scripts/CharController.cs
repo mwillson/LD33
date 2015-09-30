@@ -9,28 +9,42 @@ public class CharController : MonoBehaviour {
 	public float speed = 1.75f;
 	public float dashTimer;
 	public float maxDash = 0.40f;
-	public GameObject projectile;
+	public GameObject projectile, softattack, hardattack;
 	public Vector2 savedposition;
 	Vector3 previouslocation, currentlocation, targetloc;
 	Quaternion newrotation;
 	Animator anim;
-	//direction we are facing
-	Vector3 facing;
-	//melee attack gameobject that we instantiate
-	GameObject attackobj;
+	Vector3 facing;					//direction we are facing
+	GameObject attackobj;			//melee attack gameobject that we instantiate
+	public Camera maincamera;		//the camera
+
+	public int attackbuffer;		//represents how many frames attack button has been held down
+
+	public string horizcontrol = "Horizontal_P1";
+	public string vertcontrol = "Vertical_P1";
+	public string attackbutton = "Fire1_P1";
+	public string dashbutton = "Trigger_P1";
 
 	// Use this for initialization
 	void Start () {
 		dashState = DashState.Ready;
 		anim = GetComponent<Animator> ();
+		maincamera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ();
 		facing = new Vector3 (1, 0, 0);
 	}
 
 	// Update is called once per frame
 	void Update () {
+
+		// check buffer for attack
+		if (Input.GetButton(attackbutton)) {
+			attackbuffer++;
+		}
+		
+
 		gameObject.GetComponent<Rigidbody2D> ().isKinematic = false;
 		//transform.position = savedposition;
-		direction = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
+		direction = new Vector3(Input.GetAxisRaw(horizcontrol), Input.GetAxisRaw(vertcontrol), 0);
 		//base.CanMove(Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw("Vertical"), out hit);
 		//Debug.Log (Input.GetAxisRaw ("Horizontal"));
 
@@ -65,6 +79,19 @@ public class CharController : MonoBehaviour {
 			break;
 		}*/
 
+
+		//do an attack
+		if (Input.GetButtonUp (attackbutton)) {
+			//first create a normalized vector so the attack is always equidistantly in front of the player
+			Vector2 toadd = new Vector2(facing.x*1.2f, facing.y*1.2f);
+			toadd.Normalize();
+			Vector3 wheretoattack = toadd;
+			wheretoattack = new Vector3(wheretoattack.x*1.2f, wheretoattack.y*1.2f);
+
+			//let it do its thang
+			anim.SetBool("Attacking", true);
+			StartCoroutine(AttackTime(wheretoattack, attackbuffer));
+		}
 	}
 
 	void LateUpdate(){
@@ -89,10 +116,11 @@ public class CharController : MonoBehaviour {
 
 	void FixedUpdate () {
 
+		savedposition = transform.position;
 
 		switch (dashState){
 		case DashState.Ready:
-			if (Input.GetButtonDown("Trigger")){
+			if (Input.GetButtonDown(dashbutton)){
 				dashState = DashState.Dashing;
 			}
 
@@ -119,30 +147,69 @@ public class CharController : MonoBehaviour {
 
 			transform.Translate(0, 0, 0);
 
-
 			break;
 
 		
 		}
-	
-		//do an attack
-		if (Input.GetButtonDown ("Fire1")) {
-			//first create a normalized vector so the attack is always equidistantly in front of the player
-			Vector2 toadd = new Vector2(facing.x*1.3f, facing.y*1.3f);
-			toadd.Normalize();
-			Vector3 toadd3 = toadd;
-			//create hitbox object
-			attackobj = (GameObject)Instantiate(projectile, transform.position + toadd3, transform.rotation);
-			//let it do its thang
-			StartCoroutine(AttackTime());
-		}
+		 
+		//convert player position from world to screen space
+		savedposition = maincamera.WorldToScreenPoint ( savedposition);
+		//clamp to within the edges of the screen
+		//Debug.Log("ScreenSpace " + gameObject.name + ": " + savedposition.x + ": " + savedposition.y);
+		savedposition.x = Mathf.Clamp (savedposition.x, 0f, Screen.width);
+		savedposition.y = Mathf.Clamp (savedposition.y, 0f, Screen.height);
+		//double check
+		//Debug.Log("ScreenSpace " + gameObject.name + ": " + savedposition.x + ": " + savedposition.y);
 
+		//if we are clamped (AKA trying to leave the screen)
+		if (savedposition.x == 0f) {
+			savedposition = savedposition + new Vector2 (.01f, 0f);
+			transform.position = GetWorldPositionOnPlane (savedposition, .3f);
+		}else if(savedposition.x == Screen.width){
+			savedposition = savedposition + new Vector2 (-.01f, 0f);
+			transform.position = GetWorldPositionOnPlane (savedposition, .3f);
+		}else if(savedposition.y == 0f){
+			savedposition = savedposition + new Vector2 (0f, .01f);
+			transform.position = GetWorldPositionOnPlane (savedposition, .3f);
+		}else if (savedposition.y == Screen.height) {
+			savedposition = savedposition + new Vector2 (0f, -.01f);
+			//set actual position to appropriate new position
+			transform.position = GetWorldPositionOnPlane (savedposition, .3f);
+		}
+		
 	}
 
+	public Vector3 GetWorldPositionOnPlane(Vector3 screenPosition, float z) {
+		Ray ray = Camera.main.ScreenPointToRay(screenPosition);
+		Plane xy = new Plane(Vector3.forward, new Vector3(0, 0, z));
+		float distance;
+		xy.Raycast(ray, out distance);
+		return ray.GetPoint(distance);
+	}
+
+	//create attack 'box'
+	//create a different one depending on buffer amount, which represents how long the
+	//player has held down the attack button
 	//wait a bit before destroying attack hitbox object
-	IEnumerator AttackTime(){
-		yield return new WaitForSeconds (.2f);
+	IEnumerator AttackTime(Vector3 where, int buffertotal){
+		//attack buffer reset
+		attackbuffer = 0;
+		//wait to spawn attack
+
+		//yield return new WaitForSeconds (.3f);
+		//create hitbox object
+		if (buffertotal > 0 && buffertotal <= 45) {
+			attackobj = (GameObject)Instantiate (softattack, transform.position + where, transform.rotation);
+		}else if (buffertotal > 45){
+			attackobj = (GameObject)Instantiate(hardattack, transform.position + where, transform.rotation);
+		}
+		attackobj.transform.SetParent (transform);
+		//wait the length of the attack
+		yield return new WaitForSeconds (.3f);
+		//then destroy attack object
 		GameObject.Destroy(attackobj);
+		//stop attack animation
+		anim.SetBool ("Attacking", false);
 	}
 
 	//enumerator describing states of dash-ability for player

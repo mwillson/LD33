@@ -71,7 +71,7 @@ public class EnemyController : MonoBehaviour {
 			waypoint = player.position;
 			movex = player.position.x - transform.position.x;
 			movey = player.position.y - transform.position.y;
-			if (Mathf.Abs(movex) < 1 && Mathf.Abs (movey) < 1){
+			if (Mathf.Abs(movex) < 1.3 && Mathf.Abs (movey) < 1.3){
 				//GameObject explosion = GameObject.CreatePrimitive(PrimitiveType.Cube);
 				//Instantiate an explosion
 				GameObject instance =
@@ -114,13 +114,13 @@ public class EnemyController : MonoBehaviour {
 					timev = (Random.value + 1.0f) * 2.0f;
 					break;
 				case "attack":
-					//for attack state, only stay still for 2 seconds
+					//for attack state, only stay still for .3 seconds
 					Debug.Log ("starting attack");
 					timev = 1.0f;
 					Debug.Log ("Prepping");
 					//the place to attack will be where the player is at attack prep time
 					Vector3 attackplace = waypoint;
-					yield return new WaitForSeconds(.3f);
+					yield return new WaitForSeconds(.1f);
 					Debug.Log ("prepped");
 					//after prepping for attack, instantiate one at players location at time of attack prep 
 					attackobj = Instantiate(attackpfab, attackplace, transform.rotation) as GameObject;

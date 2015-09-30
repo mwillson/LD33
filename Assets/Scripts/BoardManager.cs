@@ -12,15 +12,15 @@ public class BoardManager : MonoBehaviour {
     //private int columns = 10;
     private int rows;
 
-	List<int[]> top = new List<int[]>() {
+	List<int[]> topt = new List<int[]>() {
+		new int[]{ 1, 1, 1, 1, 1},
 		new int[]{ 0, 0, 0, 0, 0},
 		new int[]{ 0, 0, 0, 0, 0},
 		new int[]{ 0, 0, 0, 0, 0},
-		new int[]{ 0, 0, 0, 0, 0},
-		new int[]{ 1, 1, 1, 1, 1}
+		new int[]{ 0, 0, 0, 0, 0}
 	};
 
-	List<int[]> bottom = new List<int[]>() {
+	List<int[]> bottomt = new List<int[]>() {
 		new int[]{ 0, 0, 0, 0, 0},
 		new int[]{ 0, 0, 0, 0, 0},
 		new int[]{ 0, 0, 0, 0, 0},
@@ -42,6 +42,78 @@ public class BoardManager : MonoBehaviour {
 		new int[]{ 1, 0, 0, 0, 0},
 		new int[]{ 1, 0, 0, 0, 0},
 		new int[]{ 1, 0, 0, 0, 0}
+	};
+
+	List<int[]> bleft = new List<int[]>() {
+		new int[]{ 1, 0, 0, 0, 0},
+		new int[]{ 1, 0, 0, 0, 0},
+		new int[]{ 1, 0, 0, 0, 0},
+		new int[]{ 1, 0, 0, 0, 0},
+		new int[]{ 1, 1, 1, 1, 1}
+	};
+	
+	List<int[]> bright = new List<int[]>() {
+		new int[]{ 0, 0, 0, 0, 1},
+		new int[]{ 0, 0, 0, 0, 1},
+		new int[]{ 0, 0, 0, 0, 1},
+		new int[]{ 0, 0, 0, 0, 1},
+		new int[]{ 1, 1, 1, 1, 1}
+	};
+	
+	List<int[]> tleft = new List<int[]>() {
+		new int[]{ 1, 1, 1, 1, 1},
+		new int[]{ 1, 0, 0, 0, 0},
+		new int[]{ 1, 0, 0, 0, 0},
+		new int[]{ 1, 0, 0, 0, 0},
+		new int[]{ 1, 0, 0, 0, 0}
+	};
+
+	List<int[]> tright = new List<int[]>() {
+		new int[]{ 1, 1, 1, 1, 1},
+		new int[]{ 0, 0, 0, 0, 1},
+		new int[]{ 0, 0, 0, 0, 1},
+		new int[]{ 0, 0, 0, 0, 1},
+		new int[]{ 0, 0, 0, 0, 1}
+	};
+	
+	List<int[]> rand1 = new List<int[]>() {
+		new int[]{ 0, 1, 0, 0, 0},
+		new int[]{ 0, 1, 0, 1, 1},
+		new int[]{ 0, 1, 0, 0, 1},
+		new int[]{ 0, 1, 0, 0, 1},
+		new int[]{ 0, 0, 0, 0, 0}
+	};
+	
+	List<int[]> rand4 = new List<int[]>() {
+		new int[]{ 0, 0, 0, 0, 0},
+		new int[]{ 1, 1, 1, 0, 0},
+		new int[]{ 0, 0, 1, 0, 0},
+		new int[]{ 0, 0, 1, 1, 0},
+		new int[]{ 0, 0, 0, 0, 0}
+	};
+
+	List<int[]> rand5 = new List<int[]>() {
+		new int[]{ 1, 1, 1, 0, 0},
+		new int[]{ 0, 0, 0, 0, 0},
+		new int[]{ 0, 0, 1, 1, 0},
+		new int[]{ 0, 0, 0, 0, 0},
+		new int[]{ 0, 1, 1, 1, 1}
+	};
+	
+	List<int[]> rand2 = new List<int[]>() {
+		new int[]{ 1, 0, 0, 0, 0},
+		new int[]{ 1, 0, 0, 0, 1},
+		new int[]{ 1, 0, 0, 1, 1},
+		new int[]{ 0, 0, 1, 1, 0},
+		new int[]{ 0, 0, 0, 0, 0}
+	};
+	
+	List<int[]> rand3 = new List<int[]>() {
+		new int[]{ 0, 0, 0, 0, 0},
+		new int[]{ 0, 1, 1, 1, 0},
+		new int[]{ 0, 0, 0, 0, 0},
+		new int[]{ 1, 1, 1, 1, 0},
+		new int[]{ 0, 0, 0, 0, 0}
 	};
 
 	List<int[]> data = new List<int[]>(){
@@ -107,10 +179,11 @@ public class BoardManager : MonoBehaviour {
 
 		public void Start(){
 			possibles = new List<List<int[]>>();
-			possibles.Add (top);
-			possibles.Add (bottom);
-			possibles.Add (left);
-			possibles.Add (right);
+			possibles.Add (rand1);
+			possibles.Add (rand2);
+			possibles.Add (rand3);
+			possibles.Add (rand4);
+			possibles.Add (rand5);
 	}
 
 
@@ -118,7 +191,7 @@ public class BoardManager : MonoBehaviour {
 //Sets up the outer walls and floor (background) of the game board.
         public void BoardSetup ()
         {
-			//RandomizeData ();
+			RandomizeData ();
             //Instantiate Board and set boardHolder to its transform.
             boardHolder = new GameObject ("Board").transform;
 			columns = data[0].Length;
@@ -160,8 +233,19 @@ public class BoardManager : MonoBehaviour {
 			for (int x = 0; x < 5; x++) {
 				for (int y = 0; y < 7; y++) {
 					//each area is a 5x5 matrix
-					int num = Random.Range(0, 4);
+					//pick a random one
+					int num = Random.Range(0, 5);
 					List<int[]> whichone = possibles.Find(anarea => possibles.IndexOf(anarea) == num);
+					//or if we are on an edge space, use appropriate edge piece
+					if(x == 0 && y == 0) whichone = tleft;
+					else if (x == 4 && y == 0) whichone = tright;
+					else if (x == 0 && y == 6) whichone = bleft;
+					else if (x == 4 && y == 6) whichone = bright;
+					else if (x == 0) whichone = left;
+					else if (x == 4) whichone = right;
+					else if (y == 0) whichone = topt;
+					else if (y == 6) whichone = bottomt;
+
 					//place values for each space in that particular area
 					ValuesForArea(whichone, x, y);		
 				}

@@ -20,11 +20,11 @@ public class EnemyComponent : MonoBehaviour {
 	GameObject playerobj;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		boxCollider = GetComponent<BoxCollider2D> ();
 		lineRenderer = GetComponent<LineRenderer> ();
 		movementcontroller = GetComponent<EnemyController> ();
-		lineRenderer.material = new Material (Shader.Find("Particles/Additive"));
+		//lineRenderer.material = new Material (Shader.Find("Particles/Additive"));
 		Color c1 = Color.white;
 
 		Color c2 = Color.white;

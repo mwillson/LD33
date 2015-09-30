@@ -1,0 +1,45 @@
+Mono path[0] = 'C:/Users/Grifafa/Documents/LD33/ld33_Data/Managed'
+Mono path[1] = 'C:/Users/Grifafa/Documents/LD33/ld33_Data/Mono'
+Mono config path = 'C:/Users/Grifafa/Documents/LD33/ld33_Data/Mono/etc'
+PlayerConnection initialized from C:/Users/Grifafa/Documents/LD33/ld33_Data (debug = 0)
+PlayerConnection initialized network socket : 0.0.0.0 55249
+Multi-casting "[IP] 10.20.1.156 [Port] 55249 [Flags] 3 [Guid] 3389914324 [EditorId] 304883192 [Version] 1048832 [Id] WindowsPlayer(Grifafa-PC) [Debug] 1" to [225.0.0.222:54997]...
+Waiting for connection from host on [10.20.1.156:55249]...
+Timed out. Continuing without host connection.
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,defer=y,address=0.0.0.0:56324
+PlayerConnection already initialized - listening to [10.20.1.156:55249]
+Initialize engine version: 5.1.2f1 (afd2369b692a)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: ATI Mobility Radeon HD 5470            (ID=0x68e0)
+    Vendor:   ATI
+    VRAM:     503 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Grifafa\Documents\LD33\ld33_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Grifafa\Documents\LD33\ld33_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Grifafa\Documents\LD33\ld33_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\Grifafa\Documents\LD33\ld33_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\Grifafa\Documents\LD33\ld33_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Grifafa\Documents\LD33\ld33_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Grifafa\Documents\LD33\ld33_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Grifafa\Documents\LD33\ld33_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Grifafa\Documents\LD33\ld33_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Grifafa\Documents\LD33\ld33_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Grifafa\Documents\LD33\ld33_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\Grifafa\Documents\LD33\ld33_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.905 seconds
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: C:\Users\Grifafa\Documents\LD33\ld33_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Grifafa\Documents\LD33\ld33_Data\Managed\System.dll (this message is harmless)
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 23.393681 ms
+System memory in use before: 12.6 MB.
+System memory in use after: 12.6 MB.
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 199.
+Total: 0.293848 ms (FindLiveObjects: 0.035929 ms CreateObjectMapping: 0.012404 ms MarkObjects: 0.225412 ms  DeleteObjects: 0.016681 ms)
+
