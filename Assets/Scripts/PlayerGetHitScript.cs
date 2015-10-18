@@ -33,7 +33,7 @@ public class PlayerGetHitScript : MonoBehaviour {
 
 	public void OnTriggerEnter2D(Collider2D other){
 		if (other.gameObject == GameObject.FindGameObjectWithTag ("KnightAttack")) {
-			GameManager.Notify (Config.LOSE_NOTIFICATION);
+			GameManager.Notify (KillEvent, transform.parent.gameObject.name);
 		} else if (other.gameObject == GameObject.FindGameObjectWithTag ("Soft")) {
 			Debug.Log ("Soft Attacked!");
 			StartCoroutine (FreezePlayer ());
@@ -79,4 +79,11 @@ public class PlayerGetHitScript : MonoBehaviour {
 		//safeguard in case other flag reset doesn't get called
 		beinghit = false;
 	}
+
+    public bool KillEvent(string playerName)
+    {
+        Debug.Log(playerName + " was killed");
+        Application.LoadLevel("level1");
+        return true;
+    }
 }

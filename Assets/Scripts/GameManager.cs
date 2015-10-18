@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
 	public BoardManager boardScript;
@@ -9,12 +10,17 @@ public class GameManager : MonoBehaviour {
 
 	private static Queue notifications = new Queue();
 
-	public static void Notify(string str){
-		notifications.Enqueue(str);
-	}
+    //send a event notification to this game manager
+    //an event is currently 
+	public static void Notify(System.Func<string, bool> methodName, string theParam){
+        
+        notifications.Enqueue(methodName);
+        notifications.Enqueue(theParam);
+
+    }
 
 
-	void Awake() {
+    void Awake() {
 		currentState = Config.STARTED;
 		if (instance == null)
 			instance = this;
@@ -32,7 +38,11 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (notifications.Count != 0) {
+            System.Func<string, bool> theMethod = (System.Func<string, bool>)notifications.Dequeue();
 			string s = (string)notifications.Dequeue ();
+
+            bool retval = theMethod(s);
+
 			/* WON THE GAME*/
 			if (s == Config.WIN_NOTIFICATION && currentState != Config.WON){
 				//Debug.Log ("FEKKING WON -- not sure what to do lol");

@@ -15,8 +15,10 @@ public class KillByEnemyScript : MonoBehaviour {
 
 	public void OnTriggerEnter2D(Collider2D other){
 		if (other.gameObject == GameObject.FindGameObjectWithTag ("KnightAttack")) {
-			GameManager.Notify (Config.LOSE_NOTIFICATION);
+			//GameManager.Notify (KillEvent, gameObject.name);
 		}
 	}
+
+  
 
 }
